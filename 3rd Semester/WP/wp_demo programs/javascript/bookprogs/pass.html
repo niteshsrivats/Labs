@@ -1,0 +1,35 @@
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title> Illustrate password checking> </title>
+       <script type = "text/javascript"  src = "pswd_chk.js" >
+    </script>
+  </head>
+  <body>
+    <h3> Password Input </h3>
+    <form id = "myForm"  action = "" >
+      <p>
+      
+      <label> Your password 
+        <input type = "password" id = "initial"  
+               size = "10" />
+      </label>
+      <br /><br />
+ 
+      <label> Verify password 
+        <input type = "password"  id = "second" 
+               size = "10" />
+      </label>
+      <br /><br />
+
+      <input type = "button"  name = "b1" value="validate" onclick="chkPasswords();" />
+      
+      </p>
+    </form>
+
+<!-- Script for registering the event handlers  -->
+    <script type = "text/javascript"  src = "pswd_chkr.js">
+    </script>
+  </body>
+</html>

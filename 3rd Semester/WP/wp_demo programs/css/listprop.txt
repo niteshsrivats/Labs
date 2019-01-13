@@ -1,0 +1,26 @@
+<li>, list-style-type applies to just that item
+<h3> Some Common Single-Engine Aircraft </h3>
+ <ul>
+     <li style = "list-style-type: disc"> 
+          Cessna Skyhawk </li>
+     <li style = "list-style-type: square"> 
+          Beechcraft Bonanza </li>
+     <li style = "list-style-type: circle"> 
+          Piper Cherokee </li>
+ </ul>
+
+ <li style = "list-style-image: 
+             url(bird.jpg)">
+On ordered lists - list-style-type can be used to change the sequence values
+Property value	Sequence type	First four 
+Decimal	Arabic numerals	1, 2, 3, 4
+upper-alpha	Uc letters	A, B, C, D
+lower-alpha	Lc letters	a, b, c, d
+upper-roman	Uc Roman	I, II, III, IV
+lower-roman	Lc Roman	i, ii, iii, iv
+
+document level:
+
+ol {list-style-type:upper-roman;}
+ol ol {list-style-type:upper-alpha;}
+ol ol ol {list-style-type:decimal;}

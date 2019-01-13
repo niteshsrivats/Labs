@@ -1,0 +1,32 @@
+<html>
+<head>
+<script type="text/javascript">
+function f1(x1)
+{ x1[0]=25;
+document.write("The value is ",x1[0],"<br/>");
+}
+
+function f2(x1)
+{ x1=250;
+document.write("The value is ",x1,"<br/>");
+return x1;
+  }
+</script>
+</head>
+
+<body>
+
+<script type="text/javascript">
+var x=[10];
+document.write("The values in body tag before call",x[0],"<br/>");
+f1(x);
+document.write("The values in body tag ",x[0],"<br/>");
+
+var w=100;
+var p=f2(w);
+w=p;
+document.write("The values in body tag ",w,"<br/>");
+
+</script>
+</body>
+</html>

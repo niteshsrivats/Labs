@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Eighth</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script>
+    var total = 0;
+    function verify(x) {
+      if (Number(x.value) < 0 || Number(x.value) > 99) {
+        x.focus();
+        x.select(); 
+        return true;
+      }
+    }
+    
+    function display() {
+      f = document.getElementById("f1");
+      if (verify(f[0]) || verify(f[1]) || verify(f[2]))
+        return;
+      total = f[0].value * 59 + f[1].value * 49 + f[2].value * 39; 
+      alert("Total: " + total);
+    }
+  </script>
+</head>
+<body>
+  <form method="GET" id="f1" action="">
+    <label>Apple<input type="text" onchange="verify(this);"><br /></label>
+    <label>Orange<input type="text" id="t2" onchange="verify(this);"><br /></label>
+    <label>Banana<input type="text" id="t3" onchange="verify(this);"><br /></label>
+    <input type="button" value="Submit" onclick="display();">
+  </form>
+</body>
+</html>

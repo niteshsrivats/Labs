@@ -1,0 +1,21 @@
+<html>
+<head>
+<script type="text/javascript" src="try.js">
+function b1_click()
+{
+alert("Button is clicked");
+}
+</script>
+<body>
+<form onload="alert('Good Morning');">
+Name:
+<input type="text" id="t1" onblur="callfn();" />
+<input type="button" id="b1" onclick=b1_click();
+</form>
+<script type="text/javascript">
+function valida()
+{
+var xx=document.getElementById(t1);
+alert(t1.value);
+}
+</script>

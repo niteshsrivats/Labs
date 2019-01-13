@@ -1,0 +1,27 @@
+<html>
+<head><title> Form </title>
+</head>
+<body>
+<form action="" method="GET" id="f1">
+<label name="Courses:">Courses:</label>
+<input type="checkbox" name="c1" value="coa">COA</input>
+<input type="checkbox" name="c1" value="wp">WP</input>
+<input type="checkbox" name="c1" value="ds">DS</input>
+<input type="checkbox" name="c1" value="pcp">PCP</input>
+<input type="button" id="b1" value="Check" onclick="checkboxsel();"/>
+<script type="text/javascript">
+function checkboxsel()
+{var str="Courses selected are:";
+var xx=document.getElementById("f1");
+for(var i=0;i<xx.c1.length;i++)
+{
+if(xx.c1[i].checked==true)
+{ str+=xx.c1[i].value+" ";
+	//alert(xx.c1[i].value);
+}
+}
+alert(str);
+}
+
+</script>
+</form>

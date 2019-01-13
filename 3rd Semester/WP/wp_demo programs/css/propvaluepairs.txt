@@ -1,0 +1,25 @@
+UNITS:
+Numerical: cm,mm,in,px,pt(1/72-inch),pc(12pt)
+Percentage 50% or 200%
+em-emphasis on current size, 2em-double size
+ex- height of the letter x
+url(aa.jpg)
+color: rgb(0..255,0..255,0..255) / red / #1A2B3C
+
+Font property
+font-family: Arial.....
+Generic fonts:
+serif ----	Times New Roman, Garamond
+sans-serif ---Arial, Helvetica
+cursive	---Caflisch Script, Zapf-Chancery
+
+font-size:2mm; /* xx-small,x-small,small,medium, large,x-large,xx-large */
+font-style:italic /*oblique,normal*/
+font-variant:small-caps;/* normal*/
+font-weight: bold, normal, bolder, lighter
+font: italic bold 1.1em, 'Times New Roman' Arial
+
+CONTINUED IN textdecoration.html
+
+
+

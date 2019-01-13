@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Eighth</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script>
+    var total = 0;
+    function add(x) {
+      if (x.checked) 
+        total += Number(x.value);
+      else
+        total -= Number(x.value);
+    }
+    
+    function display() {
+      alert("Total: " + Number(total * 1.05));
+    }
+  </script>
+</head>
+<body>
+  <form method="GET" action="">
+    <label><input type="checkbox" name="c1" value="59" onclick="add(this);">Apple<br /></label>
+    <label><input type="checkbox" name="c1" value="49" onclick="add(this);">Orange<br /></label>
+    <label><input type="checkbox" name="c1" value="39" onclick="add(this);">Banana<br /></label>
+    <input type="button" value="Submit" onclick="display();">
+  </form>
+</body>
+</html>

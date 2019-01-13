@@ -1,0 +1,13 @@
+inline, document, external
+
+selector order of precedence:
+id, 
+class, 
+generic an pseudo-class
+contextual 
+universal
+simple
+
+important
+
+id="l1"

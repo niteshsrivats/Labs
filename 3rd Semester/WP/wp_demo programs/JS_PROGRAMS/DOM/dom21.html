@@ -1,0 +1,72 @@
+<html>
+<head>
+<script type="text/javascript">
+
+function disp(event)
+{
+ 	var dom=event.currentTarget; 	
+	alert("PARA");
+	
+}
+function disp1(event)
+{
+ 	var dom=event.currentTarget;
+	alert("In span");
+	event.stopPropagation();
+	
+}
+function dispabcd(event)
+{
+ 	var dom=event.currentTarget;
+	alert("TEXT");
+}
+function f2(event)
+{
+ var dom=event.currentTarget;
+ alert(event.screenX);
+ alert(event.screenY);
+}
+
+
+
+</script>
+</head>
+<body>
+<form>
+<p id="p1">
+To find specific characters or words
+Click to open Notepad. 
+
+<span name="s1" id="s1" style="color:red;"> Click the Edit menu</span>, and then click Find.
+
+In the Find what box, type the characters or words you want to find.
+
+Under Direction, click Up to search from the current cursor position to the top of the document, or click Down to search from the cursor position to the bottom of the document.
+
+Click Find Next.
+
+To replace specific characters or words
+Click to open Notepad. 
+
+Click the Edit menu, and then click Replace.
+
+
+
+
+</p>
+<input type="text" id="t1"></input>
+</form>
+<img src="pic.bmp" id="i1"/>
+<script type="text/javascript">
+
+document.getElementById("p1").addEventListener("click",disp,false);
+document.getElementById("s1").addEventListener("click",disp1,false);
+document.getElementById("t1").addEventListener("click",dispabcd,true);
+document.getElementById("i1").addEventListener("click",f2,false);
+
+
+
+</script>
+
+</body></html>
+

@@ -1,0 +1,36 @@
+//PATTERN MATCHING
+
+var str="vodafone";
+
+var pos=str.search(/one/);
+
+[ ] { } ( ) ^ $ . * + ? \
+
+[axud] - any one if seen selected
+[a-k]
+[^abcd]
+
+predefined character classes
+\d [0-9]
+\D [^0-9]
+\w [A-Za-z_0-9]
+\W [^A-Za-z_0-9]
+\s [ \r\t\n\f]
+\S [^ \r\t\n\f]
+
+Three symbolic quantifiers: + * ?
+
+Anchor ^ $
+
+pattern modifiers i x g
+/abc/i  /abc/g
+/[abc]    \d    \W  /x
+
+var arr= str.replace(/a.c/,"hyu");
+$1,$2,$3
+
+var arr=str.match(/hju/g);
+
+split function
+var s="a,b,c,d";
+var x=s.split(",");

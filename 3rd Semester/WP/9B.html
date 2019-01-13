@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Ninth_2</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script>
+    function display(a, b) {
+      var image = document.getElementById("i1").style;
+      image.left = b + "px";
+      image.top = a + "px";
+    }  
+  </script>
+  <style>
+    p {
+      text-align: justify;
+      font-size: 1.5cm;
+      margin: 0 300px 0 0;
+    }
+
+    img {
+      margin: 0;
+      opacity: .5; 
+      position: absolute;
+      top: 20px;
+      left: 0px;
+      width: 20%;
+    }
+
+  </style>
+</head>
+<body>
+    <p id="p1">Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum aperiam nam ex error dolores minus?</p>
+    <img src="Image3.jpg" id="i1" />
+    <input type="button" value="NorthWest" onclick="display(20,0);" />
+    <input type="button" value="NorthEast" onclick="display(20,455);"/>
+    <input type="button" value="SouthWest" onclick="display(70,0);"/>
+    <input type="button" value="SouthEast" onclick="display(70,455);"/>
+</body>
+</html>
+

@@ -1,0 +1,35 @@
+<html>
+<head></head>
+<body>
+<script type="text/javascript">
+
+alert(Number.MIN_VALUE);
+alert(Number.MAX_VALUE);
+alert(Number.NaN);
+alert(Number.POSITIVE_INFINITY);
+alert(Number.NEGATIVE_INFINITY);
+alert(Number.PI * 4);
+
+var emp = {eno:10,ename:"aa"};
+
+emp.enn=3;
+
+document.write("emp eno",emp.eno,"<br />");
+document.write("emp ename",emp.ename);
+document.write("emp enn",emp.enn);
+
+for(var pr in emp)
+{
+ document.write("Name:",pr,";  Value:",emp[pr],"<br />");
+}
+
+ var a=emp.enn;
+alert(a);
+
+delete emp.enn;
+
+document.write(emp.enn);
+
+</script>
+</body>
+</html>

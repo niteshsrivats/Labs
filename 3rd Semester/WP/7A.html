@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Seventh</title>
+  <style type="text/css">
+    table, td, th {
+      border: 1px solid black;
+      border-collapse: collapse;
+    }
+  </style>
+  <script type="text/javascript">
+  function f1() {
+    document.write("<table><tr><th>Number</th><th>Square</th><th>Cube</th></tr>")
+    for (var num = 5; num < 16; num++)
+      document.write("<tr><td>", num, "</td><td>", num*num, "</td><td>", num*num*num, "</td></tr>")
+  document.write("</table>")
+  }
+  
+  function f2(){
+    var first = 0, second = 1;
+    document.write(first, " ", second);
+    for (var len = 2; len < 20; len ++) {
+      second += first;
+      first = second - first;
+      document.write(" ",second);
+    }
+  }
+
+  function f3() {
+    var nums = prompt("Enter Three Numbers: ");
+    nums = nums.split(" ");
+    var largest = Number(nums[0]);
+    if (largest < Number(nums[1]))
+      largest = Number(nums[1]);
+    if (largest < Number(nums[2]))
+      largest = Number(nums[2]);
+    alert("Largest: " + largest);
+  }
+
+  function f4() {
+    var words = prompt("Enter Words: ").split(" ");
+    words.sort();
+    words = words.join(" ");
+    alert(words);
+  }
+
+  function f5() {
+    var count = 0;
+    names = prompt("Enter Names: ").split(" ");
+    for (i in names) {
+      if (names[i].search(/^A/) != -1 || names[i].search(/^a/) != -1 || 
+          names[i].search(/Y$/) != -1 || names[i].search(/y$/) != -1)
+        count += 1;
+    }
+    alert("Count: " + count);
+  }
+
+  function f6() {
+    var i = 0;
+    word = prompt("Enter String: ");
+    for(i in word) {
+      if (word[i].match(/^[aeiouAEIOU]$/)) {
+        alert(word.match(/a/g));
+        i = Number(i) + 1;
+        alert("Position: " + i);
+        return;
+      }
+    }
+    alert("No Vowels Found.") 
+  }
+
+  function f7() {
+    var neg = 0, pos = 0, zer = 0;
+    var nums = prompt("Enter Numbers: ").split(" ");
+    for (i in nums) {
+      num = Number(nums[i]);
+      if (num > 0)
+        pos++;
+      else if(num < 0)
+        neg++;
+      else
+        zer++;
+    }
+    alert("Positives: " + pos + " Negatives: " + neg + " Zeros: " + zer);
+  }
+
+  function f8() {
+    var i = 0, j = 0, row;
+    var matrix = new Array();
+    var r = prompt("Enter Number of Rows & Columns: ").split(" ");
+    var c = Number(r[1]);
+    r = Number(r[0]);
+    for (; i < r; i++) {
+      matrix[i] = new Array();
+      row = prompt("Enter Row " + (i+1) + " Elements: ").split(" ");
+      for (j in row)
+        matrix[i][j] = Number(row[j]);
+    }
+    var avg = new Array();
+    for (i = 0; i < r; i++) {
+      sum = 0;
+      for (j in row){
+        sum += matrix[i][j];
+        document.write(matrix[i][j], " ");
+      }
+      avg[i] = sum/c;
+      document.write("<br/>"); 
+    }
+    document.write("Average of Each Row: <br/>");
+    for (i in avg) {
+      document.write(avg[i], "<br/>");
+    }
+  }
+
+  function f9() {
+    var num = prompt("Enter Number: ");
+    num = num.split("")
+    num.reverse();
+    num = num.join("");
+    alert("Reverse: " + num);
+  }
+  </script>
+</head>
+<body>
+  <script type="text/javascript">
+    var ch = prompt("Enter Choice: ");
+    switch (ch) {
+      case '1': f1(); break;
+      case '2': f2(); break;
+      case '3': f3(); break;
+      case '4': f4(); break;
+      case '5': f5(); break;
+      case '6': f6(); break;
+      case '7': f7(); break;
+      case '8': f8(); break;
+      case '9': f9(); break;
+      default: alert("Invalid Input.");
+    }
+  </script>
+</body>
+</html>

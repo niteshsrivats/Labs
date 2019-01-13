@@ -1,0 +1,43 @@
+<html>
+<head><title>dom</title>
+<script type="text/javascript">
+	var sum=0;
+	function oprtr(){
+		
+		var x1=Number(document.getElementById("t1").value);
+		var x2=Number(document.getElementById("t2").value);
+		var x3=document.getElementById("b1");
+		switch(x3.value){
+			case "+":sum=x1+x2;
+					x3.value="-";
+					break;
+			case "-":sum=x1-x2;
+					x3.value="*";
+					break;
+			case "*":sum=x1*x2;
+					x3.value="/";
+					break;
+			case "/":sum=x1/x2;
+					x3.value="%";
+					break;
+			case "%":sum=x1%x2;
+					x3.value="+";
+					break;
+		}
+	}
+	function show(){
+		var y=document.getElementById("t3");
+		y.value=sum;
+	}
+</script>
+</head>
+<body>
+	<form action="" method="get">
+		<input type="text" id="t1"/>
+		<input type="button" id="b1" value="+" onclick="oprtr();"/>
+		<input type="text" id="t2" />
+		<input type="button" id="b2" value="=" onclick="show();"/>
+		<input type="text" id="t3" readonly/>
+	</form>
+</body>
+</html>

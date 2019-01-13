@@ -1,0 +1,30 @@
+<html>
+<head>
+<script type="text/javascript">
+
+function f1(x)
+{ document.write("<br /><br />The values are ",x," ",arguments.length,"<br />Element through arguments array: ",arguments[1]);
+}
+function f2(x,y)
+{ document.write("<br /><br />The values are ",x," and ",y," ",arguments.length);
+}
+function f2(x,y,z)
+{ document.write("<br /><br />The values are ",x[0]++," and ",x[1]++," ",arguments.length, x[2]);
+}
+</script>
+</head>
+
+<body>
+<script type="text/javascript">
+var a=10,b=20,c=50;
+f1(a);
+f1(a,b);
+f2(a);
+f2(a,b);
+f3(a);
+f3(a,b);
+f3(a,b,c);
+document.write("The values are ",x[0]," and ",x[1],"a[0]=",a[0]);
+</script>
+</body>
+</html>

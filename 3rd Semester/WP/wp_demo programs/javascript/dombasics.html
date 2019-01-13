@@ -1,0 +1,29 @@
+<html>
+<head>
+<script type="text/javascript">
+function b1_click()
+{
+alert("Button is clicked");
+}
+</script>
+<script type="text/javascript" src="try.js"> </script>
+</head>
+<body>
+<form action="" method="get">
+Name:
+
+<input type="text" id="t1" onblur="alert('Good Morning');" />
+<input type="text" id="t2" onkeypress="valida();" />
+<input type="button" id="b1" value="Hello" onclick="b1_click();" />
+<input type="button" id="b2" value="WakeUp" />
+</form>
+<script type="text/javascript">
+function valida()
+{
+document.getElementById("b2").onclick=ext_call;
+var xx=document.getElementById("t1");
+alert(xx.value);
+}
+</script>
+</body>
+</html>

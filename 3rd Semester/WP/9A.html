@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Ninth_1</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script>
+    function realign() {
+        var para = document.getElementById("p1");
+        var str = "<center>" + para.innerHTML[0];
+        for(var i = 1; i < para.innerHTML.length; i++) {
+          if(i % 20 == 0)
+            str += "<br/>";
+          str += para.innerHTML[i];
+        } 
+        str += "</center>";
+        para.innerHTML = str;	
+    }  	
+  </script>
+  <style>
+    p {
+      text-align: justify;
+      font-size: 1cm;
+    }
+
+    img {
+      opacity: .5; 
+      position: absolute;
+      top: 80px;
+      left: 400px;
+      width: 15%;
+    }
+
+  </style>
+</head>
+<body>
+    <p id="p1">Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum aperiam nam ex error dolores minus?</p>
+    <img src="Image3.jpg" />
+    <input type="button" id="b1"value="click" onclick="realign();" />
+</body>
+</html>

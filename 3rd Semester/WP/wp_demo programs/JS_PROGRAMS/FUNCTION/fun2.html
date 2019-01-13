@@ -1,0 +1,23 @@
+<html>
+<head>
+<script type="text/javascript">
+
+function f1(x)
+{ document.write("The values are ",x[0]++," and ",x[1]++," ",arguments.length," ",c);
+  var a=[30,40];
+  x=a;
+}
+
+</script>
+</head>
+
+<body>
+
+<script type="text/javascript">
+var a=10,b=20,c=50;
+var x=[10,20];
+f1(x);
+document.write("The values are ",x[0]," and ",x[1],"a[0]=",a[0]);
+</script>
+</body>
+</html>

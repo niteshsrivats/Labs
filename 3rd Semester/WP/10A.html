@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title>Tenth</title>
+    <script type="text/javascript">
+      var oldtop="d";
+      function display(id) {
+        var para = document.getElementById(id).style;
+        para.fontSize = "20pt";
+        para.zIndex = 10;
+        var oldPara = document.getElementById(oldtop).style;
+        oldPara.fontSize="14pt";
+        switch(oldtop) {
+          case 'a':
+            oldPara.zIndex = 0;
+            break;
+          case 'b':
+            oldPara.zIndex = 1;
+            break;
+          case 'c':
+            oldPara.zIndex = 2;
+            break;
+          case 'd':
+            oldPara.zIndex = 3;
+            break;
+        }
+        oldtop = id;
+      }
+      function initial() {
+        ids = ['a', 'b', 'c', 'd'];
+        for (var i = 0; i <= 3; i++) {
+          para = document.getElementById(ids[i]);
+          para.innerHTML = "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Qui neque itaque nobis rerum similique dolor voluptates cum aut illum corporis.";
+        }
+      }
+
+    </script>
+    <style type="text/css">
+      p {
+        font-size: 14pt;
+        text-align: justify;
+        position: absolute;
+        width: 500px;
+      }
+
+      #a {
+        color: #F00;
+        left: 50px;
+        top: 50px;
+        z-index: 0;
+      }
+
+      #b {
+        color: green;
+        left: 80px;
+        top: 80px;
+        z-index: 1;
+      }
+
+      #c {
+        color: #00F;
+        left: 110px;
+        top: 110px;
+        z-index: 2;
+      }
+
+      #d {
+        left: 140px;
+        top: 140px;
+        z-index: 3;
+      }
+    </style>
+  </head>
+  <body onload="initial();")>
+    <form>
+    <p id="a" onmouseover="display('a');"></p>
+    <p id="b" onmouseover="display('b');"></p>
+    <p id="c" onmouseover="display('c');"></p>
+    <p id="d" onmouseover="display('d');"></p>
+    </form>
+  </body>
+</html>

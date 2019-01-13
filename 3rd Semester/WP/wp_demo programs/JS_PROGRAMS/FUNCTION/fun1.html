@@ -1,0 +1,24 @@
+<html>
+<head>
+<script type="text/javascript">
+function f1()
+{
+ document.writeln("GOOD MORNING","<br />");
+}
+function f2(x,y)
+{
+ document.writeln(x+" "+y,"<br />");
+x++;y++;
+}
+f1();
+var a=10,b=20;
+f2(a,b);
+f3=f2;
+
+document.writeln(a+" "+b, "<br />");
+f3(100,200);
+</script>
+</head>
+<body>
+</body>
+</html>

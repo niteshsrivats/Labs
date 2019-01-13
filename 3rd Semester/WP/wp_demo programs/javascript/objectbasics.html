@@ -1,0 +1,42 @@
+<html>
+<head>
+<title> Javascript-Objects</title>
+</head>
+<body>
+<script type="text/javascript">
+var student=new Object();
+student.usn="1BM16CS001";
+student.name="xyz";
+student.age=20;
+student.dob=new Object();
+student.dob.day=15;
+student.dob.month="April";
+student.dob.year=1997;
+student.hobby="music";
+document.write(student.age+"<br/>");
+
+for(var xx in student)
+{document.write("Name:"+xx+" Value: "+student[xx]+"<br/>");
+if (xx=="dob")
+{ 
+for(var yy in student.dob) 
+   document.write(yy+":"+student.dob[yy]+"<br/>");
+}
+}
+delete student.hobby;
+
+document.write("<br/>After deletion:<br/>")
+for(var xx in student)
+{document.write("Name:"+xx+" Value: "+student[xx]+"<br/>");
+if (xx=="dob")
+{ for(var yy in student.dob) 
+document.write(yy+":"+student.dob[yy]+"<br/><br/>");}
+}
+
+var faculty={facid:12345,facname:"xyz"};
+for(var xx1 in faculty)
+{document.write("Name:"+xx1+" Value: " + faculty[xx1] +"<br />");}
+</script>
+</body>
+</html>
+

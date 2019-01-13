@@ -1,0 +1,32 @@
+<html>
+<head></head>
+<body>
+<script type="text/javascript">
+
+
+var emp = {eno:10,ename:"aa"};
+
+document.write("emp eno:",emp.eno,"<br />");
+document.write("emp ename:",emp.ename,"<br />");
+
+var emp1=new Object();
+emp1.eno=22;emp1.name="xxx";emp1.dept="cse";
+document.write("emp1 eno:",emp1.eno,"<br />");
+document.write("emp1 ename:",emp1.name,"<br />");
+document.write("emp1 dept:",emp1.dept,"<br />");
+
+emp.dept="ise";
+document.write("emp dept:",emp["dept"],"<br />");
+
+
+for(var y in emp)
+{
+ document.write("PropName:",y," Value:",emp[y],"<br />");
+}
+
+delete emp.dept;
+document.write("emp1 dept:",emp.dept,"<br />");
+
+</script>
+</body>
+</html>

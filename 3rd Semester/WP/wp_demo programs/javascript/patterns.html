@@ -1,0 +1,68 @@
+<html>
+<body>
+<script type="text/javascript">
+var str="Web Programming by Robert Sebesta;cost is 250.36;C programs are seen in C Programming by Balaguruswamy;C++ program can be practised from C++ Programming by Balaguruswamy;";
+
+document.write("Given string is :"+str);
+var position=str.search(/gram/);
+if(position>=0)
+ {document.write("<br/>"+"'gram' is seen in position", position);}
+else 
+ {document.write("'gram' is not seen in the string given");}
+
+// Meta  characters-\ | ( ) [ ] { } ^ $ * + ? .
+
+var pos1=str.search(/program./);
+document.write("<br/>"+pos1+"<br/>");
+pos1=str.match(/program./);
+document.write("<br/>"+"matches:"+pos1+"<br/>");
+var pos2=str.search(/\./);
+document.write(". is in"+pos2+"<br/>");
+
+var pos3=str.search(/[xyz]/);
+document.write("first in xyz is seen in "+pos3+"<br/>");
+pos3=str.match(/[xyz]/);
+document.write("first in xyz seen is "+pos3+"<br/>");
+var pos4=str.search(/[a-i]/);
+document.write("first char from a to i is seen in "+pos4+"<br/>");
+pos4=str.match(/[a-i]/);
+document.write("first char from a to i is  "+pos4+"<br/>");
+var pos5=str.search(/[^aeiou]/);
+document.write("First consonant is seen in position "+pos5+"<br/>");
+var pos5=str.match(/[^aeiou]/);
+document.write("First consonant is  "+pos5+"<br/>");
+var pos6=str.search(/\d\d\d.\d\d/);
+document.write(pos6+"<br/>");
+pos6=str.match(/\d\d\d.\d\d/);
+document.write(pos6+"<br/>");
+var pos7=str.search(/\d{3}.\d{2}/);
+document.write(pos7+"<br/>");
+var st=str.search(/\d{3}\.\d{2}/);
+document.write(st+"<br/>");
+var st=str.match(/\d{3}\.\d{2}/);
+document.write(st+"<br/>");
+
+var st8="cie mark of wp is 45 and see is 80";
+var st81=st8.match(/\d/g);
+document.write(st81+"<br/>");
+
+var st9=st8.match(/(\d+)([^\d]+)(\d+)/);
+document.write(st9+"<br/>");
+
+var st2 = "Visit Microsoft!";
+document.write(st2+"<br/>");
+var res = st2.replace("Microsoft","W3Schools");
+document.write(res+"<br/>");
+
+var st1="hello welcome";
+var st3=st1.replace(/el/g,"EL");
+document.write(st3+"<br/>");
+
+var st4="web:c:c++";
+var st5=st4.split(":");
+document.write(st5+"<br/>");
+
+/*3 symbolic quantifiers: *(0 or more)  +(1 or more)  ?(zero or one)*/
+</script>
+</body>
+</html>

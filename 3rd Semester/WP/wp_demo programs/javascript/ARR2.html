@@ -1,0 +1,30 @@
+<html>
+<body>
+<script type="text/javascript">
+
+var a=new Array();
+var x=Number(prompt("Enter r"));
+var y=Number(prompt("Enter c"));
+
+
+for(var i=0;i<x;i++)
+ {
+  a[i]=new Array(y);
+  for(var j=0;j<y;j++)
+  {
+   a[i][j]=Number(prompt("Enter the value for a["+i+"]["+j+"]"));
+  }
+document.write("<br />");
+}
+document.write("<br />","The array elements entered are:","<br />");
+for(var i=0;i<x;i++)
+ {
+  for(var j=0;j<y;j++)
+  {
+   document.write(a[i][j]," ");
+  }
+document.write("<br />");
+}
+</script>
+</body>
+</html>

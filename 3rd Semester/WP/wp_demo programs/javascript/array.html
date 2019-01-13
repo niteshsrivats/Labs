@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<body>
+<script type="text/javascript" >
+//Arrays
+
+//Arrays are also seen as objects. Array-object
+
+var x1=new Array(1,2,"one","two");
+var x2=new Array(5);
+var x3=["a","b",10,20];
+var x4=[20];
+//x1.length=10;
+document.write("<br/><br/>"+"ARRAY X1-length:"+x1.length);
+for(i=0;i<x1.length;i++)
+{
+ document.write("<br/>"+x1[i]);
+}
+var z=x1[0]+x1[1];
+var z1=x1[2]+x1[3];
+
+document.write("<br/>"+z+" "+z1);
+
+document.write("<br/>"+"<br/>"+"ARRAY X2-length:"+x2.length);
+
+for(i=0;i<x2.length;i++)
+{
+ document.write("<br/>"+x2[i]);
+}
+document.write("<br/>"+"<br/>"+"ARRAY X3-length:"+x3.length);
+for(i=0;i<x3.length;i++)
+{
+ document.write("<br/>"+x3[i]);
+}
+document.write("<br/>"+"<br/>"+"ARRAY X4-length:"+x4.length);
+for(i=0;i<x4.length;i++)
+{
+ document.write("<br/>"+x4[i]);
+}
+
+//Array methods
+
+var namelist=new Array("web","programming","laboratory","manual");
+
+document.write("<br/>"+namelist);
+document.write("<br/>"+namelist[1]);
+document.write("<br/>"+namelist[2]);
+document.write("<br/>"+namelist[3]);
+document.write("<br/>"+namelist[0]);
+
+var nlist=namelist.join(":");
+var nlist1=namelist.join();
+
+document.write("<br/><br/>"+nlist);
+document.write("<br/>"+nlist1);
+
+namelist.reverse();
+document.write("<br/><br/>"+namelist);
+
+namelist.sort();
+document.write("<br/><br/>"+namelist);
+
+var nl=namelist.concat("xyz","wxy");
+document.write("<br/><br/>"+nl);
+
+
+var arr1=namelist.slice(2); //toString method called
+var arr2 =namelist.slice(1,5);
+document.write("<br/><br/>"+arr1);
+document.write("<br/><br/>"+arr2);
+
+namelist.push("MANUAL");
+document.write("<br/><br/>"+namelist);
+namelist.push("assignment");
+document.write("<br/><br/>"+namelist);
+var s=namelist.pop();
+document.write("<br/><br/>"+namelist);
+document.write("<br/><br/>"+s);
+
+var t=namelist.shift();
+document.write("<br/><br/>"+namelist);
+document.write("<br/>"+t);
+
+namelist.unshift("AAA");
+document.write("<br/>"+namelist);
+
+namelist[20]=100;
+document.write("<br />",namelist.length,"<br />");
+
+var x=namelist.toString();
+document.write("The result of tostring method is ",x,"<br />");
+
+namelist.length=3;
+document.write(namelist);
+</script>
+</body>
+</html>

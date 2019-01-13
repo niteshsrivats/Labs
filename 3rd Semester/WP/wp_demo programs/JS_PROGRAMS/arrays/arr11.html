@@ -1,0 +1,142 @@
+<html>
+<body>
+<script type="text/javascript">
+
+var arr=new Array();
+arr[0]=10;
+arr[1]=20;
+document.write(arr[0]," ",arr[1],"<br />");
+
+
+var arr1=new Array("aa",22,"bb");
+document.write(arr1[0]," ",arr1[1]," ",arr1[2],"<br />");
+var x=arr1.toString();
+document.write("The result of tostring method is ",x,"<br />")
+
+
+var arr2=["xxx","yyy","zzz"];
+document.write(arr2[0]," ",arr2[1]," ",arr2[2],"<br />");
+
+
+
+arr2.length=10;
+for(var i=0;i<5;i++)
+{
+ document.write(arr2[i]," ");
+}
+document.write("<br />");
+document.write("<br />");
+
+
+arr2.length=2;
+for(var i=0;i<5;i++)
+{
+ document.write(arr2[i]," ");
+}
+document.write("<br />");
+document.write("<br />");
+
+
+var m1=arr1.join("-");
+document.write(m1," ");
+document.write("<br />");
+document.write("<br />");
+
+
+
+var m2=["ss","kk","oo","yy"];
+m2.sort();
+for(var i=0;i<m2.length;i++)
+{
+ document.write(m2[i]," ");
+}
+document.write("<br />");
+document.write("<br />");
+
+
+m2=m2.concat("qq","tt");
+document.write("m2 s length",m2.length,"<br/>");
+for(var i=0;i<m2.length;i++)
+{
+ document.write(m2[i]," ");
+}
+document.write("<br />");
+document.write("<br />");
+
+
+var m3=m2.slice(1,4);
+for(var i=0;i<m3.length;i++)
+{
+ document.write(m3[i],"  ");
+}
+document.write("<br />");
+document.write("<br />");
+
+
+var m4=m3.pop();
+
+document.write(m4.length);
+for(var i=0;i<m4.length;i++)
+{
+ document.write(m4[i],"<br />");
+}
+document.write("<br />");
+document.write("<br />");
+
+m3.push("pp");
+document.write("m3 contents\n");
+for(var i=0;i<m3.length;i++)
+{
+ document.write(m3[i],"  ");
+}
+document.write("<br />");
+document.write("<br />");
+
+
+var m5=new Array();
+ m5[0]=m3.shift();
+document.write(m5,"<br />");
+
+
+for(var i=0;i<m3.length;i++)
+{
+ document.write(m3[i],"  ");
+}
+document.write("<br />");
+document.write("<br />");
+
+
+m5[1]=m3.shift();
+for(var i=0;i<m5.length;i++)
+{
+ document.write(m5[i],"  ");
+}
+
+document.write("<br />");
+document.write("<br />");
+
+for(var i=0;i<m3.length;i++)
+{
+ document.write(m3[i],"  ");
+}
+document.write("<br />");
+document.write("<br />");
+
+m3.unshift("ss");
+for(var i=0;i<m3.length;i++)
+{
+ document.write(m3[i],"  ");
+}
+document.write("<br />");
+document.write("<br />");
+
+for(var i=0;i<m5.length;i++)
+{
+ document.write(m5[i],"<br />");
+}
+document.write("<br />");
+document.write("<br />");
+
+</script>
+</body>
+</html>
