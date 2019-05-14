@@ -32,13 +32,13 @@ void print(char* poly) {
             if (i == 0)
                 cout << "1";
             else
-                cout << "x^" << i + 1;
+                cout << "x^" << i;
             i++;
             break;
         }
     for (;poly[i] != '\0'; i++)
         if (poly[i] == '1')
-            cout << " + x^" << i + 1;
+            cout << " + x^" << i;
     cout << endl;
 }
 
