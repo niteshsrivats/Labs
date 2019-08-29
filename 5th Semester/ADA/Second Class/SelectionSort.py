@@ -3,10 +3,13 @@ import numpy as np
 import matplotlib as mplt
 from matplotlib import pyplot as plt
 
+totalComparisions = 0
 def selection_sort(array, size):
+    global totalComparisions
     for i in range(size):
         position = i
         for j in range(i + 1, size):
+            totalComparisions += 1
             if array[position] > array[j]:
                 position = j
         array[i], array[position] = array[position], array[i]
@@ -16,6 +19,7 @@ def runOnInput():
     array = list(map(int, input("Enter numbers: ").strip(" ").split(" ")))
     size = len(array)
     print("Sorted Array: ", selection_sort(array, size))
+    print("Total Comparisions:", totalComparisions)
 
 def draw(times, sizes):
     plt.title("Selection Sort")
@@ -35,4 +39,6 @@ def benchmark():
 
     draw(total_times, sizes)
 
-benchmark()
+# 2 74 38 87 95 42 88 58 8 23 62 83 12 19 28 38 47 6 31 94
+# Total Comparisions: 190
+runOnInput()

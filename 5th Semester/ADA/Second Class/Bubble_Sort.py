@@ -3,9 +3,12 @@ import numpy as np
 import matplotlib as mplt
 from matplotlib import pyplot as plt
 
-def bubble_sort(array, size):
+totalComparisions = 0
+def bubble_sort(array, size):    
+    global totalComparisions
     for i in range(size):
         for j in range(size - i - 1):
+            totalComparisions += 1
             if array[j] > array[j + 1]:
                 array[j], array[j + 1] = array[j + 1], array[j]
     return array
@@ -14,6 +17,7 @@ def runOnInput():
     array = list(map(int, input("Enter numbers: ").strip(" ").split(" ")))
     size = len(array)
     print("Sorted Array: ", bubble_sort(array, size))
+    print("Total Comparisions:", totalComparisions)
 
 
 def draw(times, sizes):
@@ -34,4 +38,6 @@ def benchmark():
 
     draw(total_times, sizes)
 
-benchmark()
+# 2 74 38 87 95 42 88 58 8 23 62 83 12 19 28 38 47 6 31 94
+# Total Comparisions: 190
+runOnInput()
