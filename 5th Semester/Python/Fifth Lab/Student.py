@@ -1,7 +1,7 @@
 class Student:
-    def __init__(self):
-        self.marks = None
-        self.age = None
+    def __init__(self, marks=None, age=None):
+        self.marks = marks
+        self.age = age
 
     def get_marks(self):
         return self.marks
