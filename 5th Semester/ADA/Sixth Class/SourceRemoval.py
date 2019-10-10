@@ -1,11 +1,10 @@
 import numpy as np
 
 size = int(input("Enter Size: "))
-matrix = list()
-for i in range(size):
-    matrix.append(list(map(int, input().strip(" ").split(" "))))
-# matrix = [[0, 1, 0, 0], [0, 0, 1, 0], [0, 0, 0, 0], [1, 0, 0, 0]]
-matrix = np.array(matrix)
+matrix = np.zeros((size, size))
+pairs = list(map(str, input("Enter pairs: ").lstrip("[").rstrip("]").split(", ")))
+for i in range(0, len(pairs), 2):
+    matrix[int(pairs[i].lstrip("["))][int(pairs[i + 1].rstrip("]"))] = 1
 indegree = np.zeros((size, ))
 
 
