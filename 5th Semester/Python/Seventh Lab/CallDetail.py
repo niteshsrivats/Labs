@@ -5,6 +5,9 @@ class CallDetail:
         self.duration = duration
         self.call_type = call_type
 
+    def __str__(self):
+        return "Caller: " + self.get_caller() + "\nCallee: " + self.get_callee() + "\nDuration: " + self.get_duration() + "\nCallType: " + self.get_call_type() + "\n"
+
     def get_caller(self):
         return self.caller
 
