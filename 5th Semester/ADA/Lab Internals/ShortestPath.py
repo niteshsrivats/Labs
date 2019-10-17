@@ -1,50 +1,39 @@
 import numpy as np
-
+import sys
 matrix = list()
 size = int(input("Enter size of matrix: "))
 for i in range(size):
     matrix.append(list(map(str, input().strip(" ").split(" "))))
-
-# size = 12
-# matrix = [
-#     [0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0],#A - 0
-#     [1, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0],#B - 1
-#     [1, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0],#C - 2
-#     [0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],#D - 3
-#     [0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],#E - 4
-#     [0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0],#F - 5
-#     [0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 1],#G - 6
-#     [0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0],#X - 7
-#     [0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0],#Y - 8
-#     [0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0],#Z - 9
-#     [0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0],#I - 10
-#     [0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0] #J - 11
-#     ]
+sourceX, sourceY, destinationX, destinationY = map(int, input(
+    "Enter source and destination index: ").strip(" ").split(" "))
+# matrix = [[0, 1, 0, 1], [1, 0, 1, 1], [0, 1, 1, 1], [1, 1, 1, 1]]
+# sourceX, sourceY, destinationX, destinationY = 0, 3, 3, 0
+distanceMin = sys.maxsize
 
 
-def breadthFirstSearch():
-    visited = np.zeros(size)
-    for node in range(size):
-        if visited[node] == 0:
-            visited[node] = 1
-            print(bfs(visited, node))
+def shortestPath(matrix, sourceX, sourceY, destinationX, destinationY, visited=np.zeros((size, size)), distance=0):
+    global distanceMin
+    visited[sourceX][sourceY] = 1
+    if matrix[sourceX][sourceY]:
+        if sourceX != destinationX:
+            if sourceX > 0 and visited[sourceX - 1][sourceY] == 0:
+                shortestPath(matrix, sourceX - 1, sourceY,
+                             destinationX, destinationY, visited, distance + 1)
+            if sourceX < size - 1 and visited[sourceX + 1][sourceY] == 0:
+                shortestPath(matrix, sourceX + 1, sourceY,
+                             destinationX, destinationY, visited, distance + 1)
+        if sourceY != destinationY:
+            if sourceY > 0 and visited[sourceX][sourceY - 1] == 0:
+                shortestPath(matrix, sourceX, sourceY - 1,
+                             destinationX, destinationY, visited, distance + 1)
+            if sourceY < size - 1 and visited[sourceX][sourceY + 1] == 0:
+                shortestPath(matrix, sourceX, sourceY + 1,
+                             destinationX, destinationY, visited, distance + 1)
+        if sourceX == destinationX and sourceY == destinationY:
+            if distanceMin > distance:
+                distanceMin = distance
+    return
 
 
-def bfs(visited, node):
-    result = [node]
-    currentIndex = 0
-    resultSize = 1
-
-    while (currentIndex < resultSize):
-        node = result[currentIndex]
-        for i in range(size):
-            if visited[i] == 0 and matrix[node][i] >= 1:
-                visited[i] = 1
-                result.append(i)
-                resultSize += 1
-        currentIndex += 1
-
-    return result
-
-
-breadthFirstSearch()
+shortestPath(matrix, sourceX, sourceY, destinationX, destinationY)
+print(distanceMin)

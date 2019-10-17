@@ -4,23 +4,26 @@ import numpy as np
 # weights = list(map(int, input("Enter weights: ").strip(" ").split(" ")))
 # values = list(map(int, input("Enter values: ").strip(" ").split(" ")))
 
-capacity = 50
-weights = [10, 20, 30]
-values = [60, 100, 120]
+subset = [10, 20, 30, 25, 5]
 
-length = len(weights)
-matrix = np.zeros((length, capacity + 1))
+size = len(subset)
 
-for i in range(weights[0], capacity):
-    matrix[0][i] = values[0]
 
-for i in range(1, length):
-    for j in range(capacity + 1):
-        if j - weights[i] >= 0:
-            matrix[i][j] = max(matrix[i - 1][j], values[i] +
-                               matrix[i - 1][j - weights[i]])
-        else:
-            matrix[i][j] = matrix[i - 1][j]
+def sumOfSubsets(set, sum, index=0, subset=[]):
+    if index == size:
+        return
+    if set[index] == sum:
+        subsetCopy = subset.copy()
+        subsetCopy.append(set[index])
+        print(subsetCopy)
+        sumOfSubsets(set, sum, index + 1, subset)
+    elif sum - set[index] < 0:
+        sumOfSubsets(set, sum, index + 1, subset)
+    elif sum - set[index] > 0:
+        subsetCopy = subset.copy()
+        subsetCopy.append(set[index])
+        sumOfSubsets(set, sum - set[index], index + 1,
+                     subsetCopy) or sumOfSubsets(set, sum, index + 1, subset)
 
-print(matrix)
-print(matrix[-1][-1])
+
+sumOfSubsets(subset, 30)
