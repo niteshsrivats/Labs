@@ -1,17 +1,18 @@
-int led = 3;
-int brightness = 0;
-int fadeAmount = 5;
+const int ledPin = 3;
+int brightness = 0, fadeAmount = 5;
 
-void setup() {
-  pinMode(led, OUTPUT);
+void setup()
+{
+  pinMode(ledPin, OUTPUT);
 }
 
-void loop() {
-  analogWrite(led, brightness);
-
+void loop()
+{
+  analogWrite(ledPin, brightness);
   brightness = brightness + fadeAmount;
 
-  if (brightness <= 0 || brightness >= 255) {
+  if (brightness <= 0 || brightness >= 255)
+  {
     fadeAmount = -fadeAmount;
   }
   delay(30);

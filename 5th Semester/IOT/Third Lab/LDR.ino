@@ -1,16 +1,18 @@
-const int led = 3;
-const int ldr = 5;
-int ldrValue, ledValue; 
-      
-void setup() {
-  pinMode(led, OUTPUT);
-  pinMode(ldr, INPUT);
+const int ledPin = 3, ldrPin = 5;
+int ldrValue, ledValue;
+
+void setup()
+{
+  pinMode(ledPin, OUTPUT);
+  pinMode(ldrPin, INPUT);
   Serial.begin(9600);
 }
-void loop() { 
-  ldrValue = analogRead(ldr);
+
+void loop()
+{
+  ldrValue = analogRead(ldrPin);
   ledValue = map(ldrValue, 300, 1000, 255, 0);
   Serial.println(String(ldrValue) + ":" + String(ledValue));
-  analogWrite(led, ledValue);
+  analogWrite(ledPin, ledValue);
   delay(100);
 }

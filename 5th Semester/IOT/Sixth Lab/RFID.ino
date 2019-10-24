@@ -2,18 +2,16 @@
 SoftwareSerial serial(3, 10);
 
 int count;
-char input[12];
-const int ledGreen = 11;
-const int ledRed = 9;
+char input[12], check[12] = {'5', '1', '0', '0', '9', '3', 'E', '0', '2', 'A', '0', '8'};
+const int greenLedPin = 11, redLedPin = 9;
 boolean flag;
-char check[12] = {'5', '1', '0', '0', '9', '3', 'E', '0', '2', 'A', '0', '8'};
 
 void setup()
 {
   Serial.begin(9600);
   serial.begin(9600);
-  pinMode(ledRed, OUTPUT);
-  pinMode(ledGreen, OUTPUT);
+  pinMode(redLedPin, OUTPUT);
+  pinMode(greenLedPin, OUTPUT);
 }
 
 void loop()
@@ -39,16 +37,16 @@ void loop()
     }
     if (flag)
     {
-      digitalWrite(ledRed, HIGH);
+      digitalWrite(redLedPin, HIGH);
       delay(1000);
-      digitalWrite(ledRed, LOW);
+      digitalWrite(redLedPin, LOW);
       flag = false;
     }
     else
     {
-      digitalWrite(ledGreen, HIGH);
+      digitalWrite(greenLedPin, HIGH);
       delay(1000);
-      digitalWrite(ledGreen, LOW);
+      digitalWrite(greenLedPin, LOW);
     }
   }
   delay(100);

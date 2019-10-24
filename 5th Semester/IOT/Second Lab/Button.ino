@@ -1,17 +1,20 @@
-int button = 3;
-int led = 4;
+const int buttonPin = 3, ledPin = 4;
 
-void setup() {
-  pinMode(button, INPUT);
-  pinMode(led, OUTPUT);
-  Serial.begin(9600);
+void setup()
+{
+  pinMode(buttonPin, INPUT);
+  pinMode(ledPin, OUTPUT);
 }
 
-void loop() {
-  int reading = digitalRead(button);
-  if (reading){
-    digitalWrite(led, HIGH);
-  } else {
-    digitalWrite(led, LOW);
+void loop()
+{
+  int reading = digitalRead(buttonPin);
+  if (reading)
+  {
+    digitalWrite(ledPin, HIGH);
+  }
+  else
+  {
+    digitalWrite(ledPin, LOW);
   }
 }

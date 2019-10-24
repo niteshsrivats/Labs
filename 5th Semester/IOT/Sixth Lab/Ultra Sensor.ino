@@ -1,7 +1,6 @@
 #include <LiquidCrystal.h>
 
-const int triggerPin = 1;
-const int echoPin = 2;
+const int triggerPin = 1, echoPin = 2;
 float duration, distance;
 LiquidCrystal lcd(8, 9, 4, 5, 6, 7);
 

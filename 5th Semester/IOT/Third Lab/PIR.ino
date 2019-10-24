@@ -1,32 +1,28 @@
-const int calibrationTime = 5000;
-const int pir = 2;
-const int led = 13;
-int pirState = LOW;
-int val = 0;
-int startTime = 0;
+const int calibrationTime = 5000, pirPin = 2, ledPin = 13;
+int pirState = LOW, val = 0, startTime = 0;
 
 void setup()
 {
-  pinMode(led, OUTPUT);
-  pinMode(pir, INPUT);
+  pinMode(ledPin, OUTPUT);
+  pinMode(pirPin, INPUT);
   Serial.begin(9600);
   calibrate();
 }
 
 void loop()
 {
-  val = digitalRead(pir);
+  val = digitalRead(pirPin);
   if (val != pirState)
   {
     if (val == HIGH)
     {
-      digitalWrite(led, HIGH);
+      digitalWrite(ledPin, HIGH);
       startTime = millis() / 1000;
       Serial.println("Motion Detected at " + String(startTime));
     }
     else
     {
-      digitalWrite(led, LOW);
+      digitalWrite(ledPin, LOW);
       Serial.println("Motion Finished at " + String(millis() / 1000));
     }
     pirState = val;
@@ -37,11 +33,7 @@ void loop()
 void calibrate()
 {
   Serial.println("Calibrating PIR Sensor:");
-  for (int i = 0; 100; i++)
-  {
-    digitalWrite(pir, LOW);
-    Serial.println("Calibrating: " + String(calibrationTime - (i * (calibrationTime / 100))) + "ms");
-    delay(calibrationTime / 100);
-  }
+  digitalWrite(pirPin, LOW);
+  delay(calibrationTime);
   Serial.println("Calibrated PIR Sensor.");
 }
