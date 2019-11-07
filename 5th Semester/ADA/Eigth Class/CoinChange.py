@@ -3,9 +3,6 @@ import sys
 amount = int(input("Enter Amount: "))
 coins = list(map(int, input('Enter Denominations: ').strip(" ").split(" ")))
 
-amount = 12
-coins = [1, 2, 5]
-
 change = dict()
 
 for i in range(1, coins[0]):
@@ -21,7 +18,7 @@ for coin in coins:
 
 for coin in coins:
     for i in range(coin + 1, amount + 1):
-        if change[i - coin][0] + 1 < change[i][0]:
+        if change[i - coin][0] + 1 <= change[i][0]:
             change[i] = [change[i - coin][0] + 1, change[i - coin][1].copy() + [coin]]
     # print(change)
 print("Number of coins:", change[amount][0], "Coins:", change[amount][1])
