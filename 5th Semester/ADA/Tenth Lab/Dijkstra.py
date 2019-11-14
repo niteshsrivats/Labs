@@ -4,9 +4,10 @@ size = int(input("Enter number of nodes: "))
 source = int(input("Enter source node: "))
 matrix = list()
 for i in range(size):
-    matrix.append(list(map(int, input("Enter row " + str(i) + ": "))))
+    matrix.append(list(map(int, input("Enter row " + str(i) + ": ").strip(" ").split(" "))))
 
 nodes = [i for i in range(size) if i != source]
+path = [[[] for i in range(size)]]
 visited = [source]
 
 for _ in range(size - 1):
@@ -23,10 +24,13 @@ for _ in range(size - 1):
         if matrix[destination_node][i] != 0:
             matrix[destination_node][i] += matrix[source_node][destination_node]
     
-    matrix[0][destination_node] = matrix[source_node][destination_node]
+    matrix[source][destination_node] = matrix[source_node][destination_node]
     visited.append(destination_node)
     nodes.remove(destination_node)
+    
+    path[source][destination_node].extend(path[source][source_node])
+    path[source][destination_node].append(source_node)
 
 for i in range(size):
     print("Source", source, "-", "Destination", str(i) + ":", matrix[source][i]) 
-            
+    print("Path:", path[source][i])
