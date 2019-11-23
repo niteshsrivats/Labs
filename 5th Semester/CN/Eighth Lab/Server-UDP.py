@@ -1,4 +1,4 @@
-from socket import *
+from socket import SOCK_DGRAM, socket
 
 serverSocket = socket(type=SOCK_DGRAM)
 serverSocket.bind(("10.124.6.72", 8080))

@@ -1,4 +1,4 @@
-from socket import *
+from socket import SOCK_DGRAM, socket
 
 clientSocket = socket(type=SOCK_DGRAM)
 filename = input("Enter filename")

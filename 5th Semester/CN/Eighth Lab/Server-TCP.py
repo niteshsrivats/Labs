@@ -1,4 +1,4 @@
-from socket import *
+from socket import socket
 
 serverSocket = socket()
 serverSocket.bind(("10.124.6.72", 8080))

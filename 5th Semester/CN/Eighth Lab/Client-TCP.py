@@ -1,4 +1,4 @@
-from socket import *
+from socket import socket
 
 clientSocket = socket()
 clientSocket.connect(("127.0.0.1", 8080))
