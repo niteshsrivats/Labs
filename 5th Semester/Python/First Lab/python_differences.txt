@@ -1,0 +1,15 @@
+Python 2:
+Integer division results in Integer.
+Syntax Changes: print "Hello World"
+Strings use ASCII by default.
+Uses xrange that returns an xrange object.
+Error handling does not use as keyword.
+
+Python 3:
+Integer division may result in Float.
+Syntax Changes: print("Hello World")
+Strings use Unicode by default.
+Uses range that returns a list.
+Error handling uses as keyword.
+
+

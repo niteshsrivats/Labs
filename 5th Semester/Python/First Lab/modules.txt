@@ -1,0 +1,17 @@
+General:
+pandas
+numpy
+matplotlib
+xlrd
+
+ML:
+tensorflow
+keras
+scikit-learn
+dlib
+
+Web:
+Django
+flask
+beautiful-soup
+selenium
