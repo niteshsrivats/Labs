@@ -1,0 +1,9 @@
+**/app/src/androidTest/
+**/app/src/test/
+**/app/build/
+.idea
+.gradle
+*.iml
+.DS_Store
+.externalNativeBuild
+.cxx

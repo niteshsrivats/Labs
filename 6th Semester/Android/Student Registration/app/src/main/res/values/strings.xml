@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Student Registration</string>
+    <string name="submit">Submit</string>
+    <string name="usn">USN</string>
+    <string name="email">Email</string>
+    <string name="name">Name</string>
+    <string name="phone_number">Phone Number</string>
+    <string name="details">Details</string>
+    <string name="error_message">All fields are required</string>
+    <string name="register">Register</string>
+</resources>

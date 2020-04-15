@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">GPS</string>
+    <string name="size">Size</string>
+    <string name="greetings">Greetings</string>
+    <string name="color">Color</string>
+    <string name="show_location">Show Location</string>
+</resources>

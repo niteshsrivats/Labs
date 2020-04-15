@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">SD Card</string>
+    <string name="size">Size</string>
+    <string name="greetings">Greetings</string>
+    <string name="color">Color</string>
+    <string name="enter_your_text">Enter your text</string>
+    <string name="write_data">Write Data</string>
+    <string name="read_data">Read Data</string>
+    <string name="clear">Clear</string>
+</resources>
