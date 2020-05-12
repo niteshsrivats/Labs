@@ -1,183 +1,95 @@
-"""
-    The below program works for most scenarios.
-    This program does not take into account 3 variables.
-    Ex: (A ^ B ^ C)
-    This program also almost blinding applies the distributive property without taking into regards the constraints of CNF
-"""
+from aima.logic import *
+# import aima.utils
 
 
-def get_postfix(infix):
-    precedence = {"_": 0, "-": 0, "v": 1, "^": 2, "~": 3, "(": -1}
-    postfix = ""
-    stack = []
-
-    for character in infix:
-        # Left parenthesis
-        if character == "(":
-            stack.append(character)
-        # Right parenthesis
-        elif character == ")":
-            while stack[-1] != "(":
-                postfix += stack.pop()
-            stack.pop()
-        # Operator
-        elif character in "_-v^~":
-            while stack != [] and precedence[character] <= precedence[stack[-1]]:
-                postfix += stack.pop()
-            stack.append(character)
-        # Operand
-        else:
-            postfix += character
-
-    while stack:
-        postfix += stack.pop()
-
-    return postfix
+def to_cnf(s):
+    """
+    [Page 253]
+    Convert a propositional logical sentence to conjunctive normal form.
+    That is, to the form ((A | ~B | ...) & (B | C | ...) & ...)
+    >>> to_cnf('~(B | C)')
+    (~B & ~C)
+    """
+    s = expr(s)
+    if isinstance(s, str):
+        s = expr(s)
+    s = eliminate_implications(s)  # Steps 1, 2 from p. 253
+    s = move_not_inwards(s)  # Step 3
+    return distribute_and_over_or(s)  # Step 4
 
 
-def split(expression):
-    # Expression must be enclosed in brackets
-    bracket = 0
-    first_bracket_done, get_second = False, False
-    first, second, operator = str(), str(), str()
-
-    for character in expression:
-        insert = True
-        if character == "(":
-            bracket += 1
-            # Skip first bracket
-            if bracket == 1:
-                if first_bracket_done:
-                    # if expression is not enclosed in brackets
-                    return None, None, None
-                first_bracket_done = True
-                insert = False
-        elif character == ")":
-            # Skip last bracket
-            if bracket == 1:
-                insert = False
-            bracket -= 1
-        elif bracket == 1 and character in "v^":
-            get_second = True
-            insert = False
-            operator = character
-
-        if insert:
-            if get_second:
-                second += character
-            else:
-                first += character
-
-    return first, second, operator
-
-
-def evaluate_bi_directional(first, second):
-    first_second_implies = evaluate_implies(first, second)
-    second_first_implies = evaluate_implies(second, first)
-    return "({}^{})".format(first_second_implies, second_first_implies)
-
-
-def evaluate_implies(first, second):
-    not_first = evaluate_not(first)
-    return "({}v{})".format(not_first, second)
-
-
-def evaluate_not(operand):
-    if "v" in operand or "^" in operand:
-        first, second, operator = split(operand)
-        # Middle Operator is reversed (De Morgan's Law)
-        if operator == "^":
-            operator = "v"
-        else:
-            operator = "^"
-
-        # print(first, second, operator)
-
-        return "(" + evaluate_not(first) + \
-               operator + evaluate_not(second) + ")"
-
-    if operand[0] == "~":
-        return operand[1]
-    return "~" + operand
-
-
-def evaluate_and(first, second):
-    return "({}^{})".format(first, second)
-
-
-def evaluate_or(first, second):
-    return "({}v{})".format(first, second)
-
-
-def get_distributive_result(operand, expression, operator):
-    first_half, last_half, split_operator = split(expression)
-    return apply_distributive(first=operand, second=first_half, operator=operator) + \
-           split_operator + \
-           apply_distributive(first=operand, second=last_half, operator=operator)
-
-
-def apply_distributive(first, second, operator):
-    if len(first) > 2 and len(second) > 2:
-        if operator == '^':
-            return check_distributive(first) + operator + check_distributive(second)
-        return get_distributive_result(operand=first, expression=second, operator=operator)
-    elif len(first) > 2:
-        return get_distributive_result(operand=second, expression=first, operator=operator)
-    elif len(second) > 2:
-        return get_distributive_result(operand=first, expression=second, operator=operator)
+def eliminate_implications(s):
+    """Change implications into equivalent form with only &, |, and ~ as logical operators."""
+    s = expr(s)
+    if not s.args or is_symbol(s.op):
+        return s  # Atoms are unchanged.
+    args = list(map(eliminate_implications, s.args))
+    a, b = args[0], args[-1]
+    if s.op == '==>':
+        return b | ~a
+    elif s.op == '<==':
+        return a | ~b
+    elif s.op == '<=>':
+        return (a | ~b) & (b | ~a)
+    elif s.op == '^':
+        assert len(args) == 2  # TODO: relax this restriction
+        return (a & ~b) | (~a & b)
     else:
-        return "({}{}{})".format(first, operator, second)
+        assert s.op in ('&', '|', '~')
+        return Expr(s.op, *args)
 
 
-def check_distributive(expression):
-    first, second, operator = split(expression)
-    if first is None:
-        return expression
+def move_not_inwards(s):
+    """Rewrite sentence s by moving negation sign inward.
+    >>> move_not_inwards(~(A | B))
+    (~A & ~B)
+    """
+    s = expr(s)
+    if s.op == '~':
+        def NOT(b):
+            return move_not_inwards(~b)
 
-    if len(first) > 2 or len(second) > 2:
-        return apply_distributive(first, second, operator)
+        a = s.args[0]
+        if a.op == '~':
+            return move_not_inwards(a.args[0])  # ~~A ==> A
+        if a.op == '&':
+            return associate('|', list(map(NOT, a.args)))
+        if a.op == '|':
+            return associate('&', list(map(NOT, a.args)))
+        return s
+    elif is_symbol(s.op) or not s.args:
+        return s
     else:
-        return expression
+        return Expr(s.op, *list(map(move_not_inwards, s.args)))
 
 
-def main():
-    statement = input().replace("<=>", "_").replace("=>", "-")
-    expression = get_postfix(statement)
-
-    stack = []
-    for character in expression:
-        if character in "_-v^~":
-            second = stack.pop()
-            first = stack.pop()
-
-            if character == '_':
-                result = evaluate_bi_directional(first, second)
-            elif character == '-':
-                result = evaluate_implies(first, second)
-            elif character == '^':
-                result = evaluate_and(first, second)
-            elif character == 'v':
-                result = evaluate_or(first, second)
-            elif character == '~':
-                result = evaluate_not(first)
-            else:
-                print("Unknown Character:", character)
-                exit()
-
-            stack.append(result)
-        else:
-            stack.append(character)
-
-    result = check_distributive(stack.pop())
-    first, second, operator = split(result)
-    # Remove trailing brackets if any
-    if first is None:
-        print(result)
+def distribute_and_over_or(s):
+    """Given a sentence s consisting of conjunctions and disjunctions
+    of literals, return an equivalent sentence in CNF.
+    >>> distribute_and_over_or((A & B) | C)
+    ((A | C) & (B | C))
+    """
+    s = expr(s)
+    if s.op == '|':
+        s = associate('|', s.args)
+        if s.op != '|':
+            return distribute_and_over_or(s)
+        if len(s.args) == 0:
+            return False
+        if len(s.args) == 1:
+            return distribute_and_over_or(s.args[0])
+        conj = first(arg for arg in s.args if arg.op == '&')
+        if not conj:
+            return s
+        others = [a for a in s.args if a is not conj]
+        rest = associate('|', others)
+        return associate('&', [distribute_and_over_or(c | rest)
+                               for c in conj.args])
+    elif s.op == '&':
+        return associate('&', list(map(distribute_and_over_or, s.args)))
     else:
-        print(first + operator + second)
+        return s
 
 
-if __name__ == '__main__':
-    main()
-    # A<=>B<=>C
-    # A<=>(B^C)
+print(to_cnf("~(B | C)"))
+print(to_cnf("A <=> (B & C)"))

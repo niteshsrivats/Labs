@@ -1,4 +1,5 @@
 # Import libraries
+# import itertools
 import aima.logic
 import aima.utils
 
@@ -29,9 +30,46 @@ def ask_kb(kb):
     ask = input("\nAsk: ")
     # Ask Knowledge Base
     while ask != "":
-        print(list(aima.logic.fol_fc_ask(kb, aima.utils.expr(ask))))
+        print(list(fol_fc_ask(kb, aima.utils.expr(ask))))
         ask = input("Ask: ")
     print()
+
+
+def fol_fc_ask(kb, alpha):
+
+    kb_consts = list(
+        {c for clause in kb.clauses for c in aima.logic.constant_symbols(clause)})
+
+    def enum_subst(p):
+        query_vars = list(
+            {v for clause in p for v in aima.logic.variables(clause)})
+        for assignment_list in itertools.product(kb_consts, repeat=len(query_vars)):
+            theta = {x: y for x, y in zip(query_vars, assignment_list)}
+            yield theta
+
+    # check if we can answer without new inferences
+    for q in kb.clauses:
+        phi = aima.logic.unify_mm(q, alpha)
+        if phi is not None:
+            yield phi
+
+    while True:
+        new = []
+        for rule in kb.clauses:
+            p, q = aima.logic.parse_definite_clause(rule)
+            for theta in enum_subst(p):
+                if set(aima.logic.subst(theta, p)).issubset(set(kb.clauses)):
+                    q_ = aima.logic.subst(theta, q)
+                    if all([aima.logic.unify_mm(x, q_) is None for x in kb.clauses + new]):
+                        new.append(q_)
+                        phi = aima.logic.unify_mm(q_, alpha)
+                        if phi is not None:
+                            yield phi
+        if not new:
+            break
+        for clause in new:
+            kb.tell(clause)
+    return None
 
 
 def main():
