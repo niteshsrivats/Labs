@@ -12,7 +12,7 @@
 
 #### Question 1b
 
-![Screenshot](images/box_plot-1.png)
+![Screenshot](images/box_plot-2.png)
 
 #### Question 2
 
