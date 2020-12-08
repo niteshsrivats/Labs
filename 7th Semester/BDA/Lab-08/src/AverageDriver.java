@@ -9,6 +9,7 @@ import org.apache.hadoop.fs.Path;
 import org.apache.hadoop.io.IntWritable;
 import org.apache.hadoop.io.Text;
 import org.apache.hadoop.io.LongWritable;
+//import org.apache.hadoop.io.FloatWriteable;
 import org.apache.hadoop.mapred.Mapper;
 import org.apache.hadoop.mapred.MapReduceBase;
 import org.apache.hadoop.mapred.OutputCollector;
@@ -21,15 +22,21 @@ import org.apache.hadoop.mapred.JobConf;
 import org.apache.hadoop.mapred.TextInputFormat;
 import org.apache.hadoop.mapred.TextOutputFormat;
 
-public class WordCountDriver {
-    public static void main(String[] args) throws IOException {
-        JobConf conf = new JobConf(WordCountDriver.class);
-        conf.setJobName("WordCount");
+import java.io.IOException;
+
+public class AverageDriver {
+    public static void main(String[] args) throws Exception {
+        if (args.length != 2) {
+            System.err.println("Please Enter the input and output parameters");
+            System.exit(-1);
+        }
+        JobConf conf = new JobConf(AverageDriver.class);
+        conf.setJobName("Average");
         conf.setOutputKeyClass(Text.class);
         conf.setOutputValueClass(IntWritable.class);
-        conf.setMapperClass(WordCountMapper.class);
-        conf.setCombinerClass(WordCountReducer.class);
-        conf.setReducerClass(WordCountReducer.class);
+        conf.setMapperClass(AverageMapper.class);
+        conf.setCombinerClass(AverageReducer.class);
+        conf.setReducerClass(AverageReducer.class);
         conf.setInputFormat(TextInputFormat.class);
         conf.setOutputFormat(TextOutputFormat.class);
         FileInputFormat.setInputPaths(conf, new Path(args[0]));
@@ -38,29 +45,30 @@ public class WordCountDriver {
     }
 }
 
-class WordCountMapper extends MapReduceBase implements Mapper<LongWritable, Text, Text, IntWritable> {
+class AverageMapper extends MapReduceBase implements Mapper<LongWritable, Text, Text, IntWritable> {
     private final static IntWritable one = new IntWritable(1);
-    private Text word = new Text();
+    private Text num = new Text();
 
     public void map(LongWritable key, Text value, OutputCollector<Text, IntWritable> output,
                     Reporter reporter) throws IOException {
         String line = value.toString();
-        StringTokenizer tokenizer = new StringTokenizer(line);
+        StringTokenizer tokenizer = new StringTokenizer(line, " ");
         while (tokenizer.hasMoreTokens()) {
-            word.set(tokenizer.nextToken());
-            output.collect(word, one);
+            num.set(tokenizer.nextToken());
+            output.collect(num, one);
         }
     }
-
 }
 
-class WordCountReducer extends MapReduceBase implements Reducer<Text, IntWritable, Text, IntWritable> {
+class AverageReducer extends MapReduceBase implements Reducer<Text, IntWritable, Text, IntWritable> {
     public void reduce(Text key, Iterator<IntWritable> values, OutputCollector<Text, IntWritable> output,
                        Reporter reporter) throws IOException {
         int sum = 0;
+        int count = 0;
         while (values.hasNext()) {
             sum += values.next().get();
+            count += 1;
         }
-        output.collect(key, new IntWritable(sum));
+        output.collect(key, new IntWritable(sum / count));
     }
 }
